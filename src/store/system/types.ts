@@ -14,11 +14,13 @@ export type SystemData = {
     email: string
 }
 
-export const UPDATE_SYSTEM_INFORMATION = "UPDATE_SYSTEM_INFORMATION";
+export const UPDATE_SYSTEM_INFORMATION_REQUEST = "UPDATE_SYSTEM_INFORMATION_REQUEST";
+export const UPDATE_SYSTEM_INFORMATION_SUCCESS = "UPDATE_SYSTEM_INFORMATION_SUCCESS";
+export const UPDATE_SYSTEM_INFORMATION_FAILURE = "UPDATE_SYSTEM_INFORMATION_FAILURE";
 
-interface UpdateSystemInformation {
-    type: typeof UPDATE_SYSTEM_INFORMATION;
+interface UpdateSystemInformationSuccess {
+    type: typeof UPDATE_SYSTEM_INFORMATION_SUCCESS;
     payload: SystemState;
 }
 
-export type SystemActionTypes = UpdateSystemInformation;
+export type SystemActionTypes = UpdateSystemInformationSuccess;

@@ -1,29 +1,17 @@
 import {
-    StationInformation,
-    StationStatus,
-    UPDATE_STATION_INFORMATION,
-    UPDATE_STATION_STATUS,
-    DELETE_STATION
+    UPDATE_STATION_INFORMATION_REQUEST,
+    UPDATE_STATION_STATUS_REQUEST,
 } from "./types";
 
-export function updateStationInformationArray(information: StationInformation[]) {
+export function updateStationInformationRequest() {
     return {
-        type: UPDATE_STATION_INFORMATION,
-        payload: information
+        type: UPDATE_STATION_INFORMATION_REQUEST,
     };
 }
 
-export function updateStationStatusArray(status: StationStatus[]) {
+export function updateStationStatusRequest() {
     return {
-        type: UPDATE_STATION_STATUS,
-        payload: status
-    }
-}
-
-export function deleteStationArray(stationId: string) {
-    return {
-        type: DELETE_STATION,
-        payload: stationId
+        type: UPDATE_STATION_STATUS_REQUEST,
     }
 }
 

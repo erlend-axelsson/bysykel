@@ -1,8 +1,10 @@
 export interface StationState {
-    information: StationInformation[];
-    informationIndex: {[key: string]: number}
-    status: StationStatus[];
-    statusIndex: {[key: string]: number}
+    [key: string]: Station
+}
+
+export type Station = {
+    information: StationInformation
+    status: StationStatus
 }
 
 export type StationInformation = {
@@ -24,17 +26,21 @@ export type StationStatus = {
     num_docks_available: number;
 }
 
-export const UPDATE_STATION_INFORMATION = "UPDATE_STATION_INFORMATION";
-export const UPDATE_STATION_STATUS = "UPDATE_STATION_STATUS";
+export const UPDATE_STATION_INFORMATION_REQUEST = "UPDATE_STATION_INFORMATION_REQUEST";
+export const UPDATE_STATION_INFORMATION_SUCCESS = "UPDATE_STATION_INFORMATION_SUCCESS";
+export const UPDATE_STATION_INFORMATION_FAILURE = "UPDATE_STATION_INFORMATION_FAILURE";
+export const UPDATE_STATION_STATUS_REQUEST = "UPDATE_STATION_STATUS_REQUEST";
+export const UPDATE_STATION_STATUS_SUCCESS = "UPDATE_STATION_STATUS_SUCCESS";
+export const UPDATE_STATION_STATUS_FAILURE = "UPDATE_STATION_STATUS_FAILURE";
 export const DELETE_STATION = 'DELETE_STATION';
 
-interface UpdateStationInformationAction {
-    type: typeof UPDATE_STATION_INFORMATION;
+interface UpdateStationInformationActionSuccess {
+    type: typeof UPDATE_STATION_INFORMATION_SUCCESS;
     payload: StationInformation[];
 }
 
-interface UpdateStationStatusAction {
-    type: typeof UPDATE_STATION_STATUS;
+interface UpdateStationStatusActionSuccess {
+    type: typeof UPDATE_STATION_STATUS_SUCCESS;
     payload: StationStatus[];
 }
 
@@ -43,4 +49,5 @@ interface DeleteStationAction {
     payload: string
 }
 
-export type StationActionTypes = UpdateStationInformationAction | UpdateStationStatusAction | DeleteStationAction;
+export type StationActionTypes =
+    UpdateStationInformationActionSuccess | UpdateStationStatusActionSuccess | DeleteStationAction;

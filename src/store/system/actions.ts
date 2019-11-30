@@ -1,12 +1,8 @@
 import {
-    SystemState,
-    UPDATE_SYSTEM_INFORMATION
+    SystemState, UPDATE_SYSTEM_INFORMATION_REQUEST,
+    UPDATE_SYSTEM_INFORMATION_SUCCESS
 } from "./types";
 
-export function updateSystemInformation(information: SystemState) {
-    return {
-        type: UPDATE_SYSTEM_INFORMATION,
-        payload: information
-    };
+export function updateSystemInformationRequest() {
+    return {type: UPDATE_SYSTEM_INFORMATION_REQUEST}
 }
-

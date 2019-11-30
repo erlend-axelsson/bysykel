@@ -57,19 +57,19 @@ const startServer = (options, clientIdentifier) => {
         res.sendFile(path.join(__dirname, 'build', 'index.html'))
     });
 
-    app.get('/api/system_information', async (req, res) => {
+    app.get('/loading/system_information', async (req, res) => {
         const data = await getData(options.system_information, clientIdentifier);
         res.send(data);
     });
-    app.get('/api/station_information', async (req, res) => {
+    app.get('/loading/station_information', async (req, res) => {
         const data = await getData(options.station_information, clientIdentifier);
         res.send(data);
     });
-    app.get('/api/station_status', async (req, res) => {
+    app.get('/loading/station_status', async (req, res) => {
         const data = await getData(options.station_status, clientIdentifier);
         res.send(data);
     });
 
-    app.listen(8080, ()=> console.log('starting server with ' + options.ttl));
+    app.listen(8080, ()=> console.log('starting server'));
 };
 main().then(console.log);

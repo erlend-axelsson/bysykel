@@ -1,10 +1,9 @@
 import React from 'react';
-import {StationInformation, StationStatus} from "../store/station/types";
+import {Station, StationInformation, StationStatus} from "../store/station/types";
 import './StationCard.css';
 
 type StationProps = {
-    information?: StationInformation
-    status?: StationStatus
+    station: Station
 }
 
 const information = (information?: StationInformation) => {
@@ -31,12 +30,12 @@ const status = (status?: StationStatus) => {
     </>
 };
 
-const StationCard: React.FC<StationProps> = (props) => {
+const StationCard = ({station}: StationProps) => {
     return <div className='StationCard'>
-            <dl>
-                {information(props.information)}
-                {status(props.status)}
-            </dl>
+        <dl>
+            {information(station.information)}
+            {status(station.status)}
+        </dl>
     </div>
 
 };

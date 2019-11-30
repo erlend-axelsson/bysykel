@@ -1,0 +1,7 @@
+div.StationCard {
+    background-color: lightsteelblue;
+    text-align: left;
+    padding: 2em;
+    margin: 2em;
+    box-shadow: 3px 3px 10px 0px cornflowerblue;
+}

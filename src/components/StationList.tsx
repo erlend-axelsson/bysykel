@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {Station, StationState} from "../store/station/types";
 import StationCard from "./StationCard";
 import fuzzy from 'fuzzy'
+import StationMap from "./Map";
 
 interface StationListProps {
     station: StationState,
@@ -28,7 +29,7 @@ const StationList = ({station}:
     };
     return <>
         <h1>Søk</h1>
-        <p>Hvis søkefeltet står tomt vises de 25 stasjonene med flest ledige sykkler</p>
+        <p>Hvis søkefeltet står tomt vises de 25 stasjonene med flest ledige sykler</p>
         <div><input value={search} onChange={handleSearch}/></div>
         {results?
             results.map(result => <StationCard key={result.original.information.station_id} station={result.original}/>)

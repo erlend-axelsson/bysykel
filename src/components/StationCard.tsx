@@ -1,6 +1,10 @@
 import React from 'react';
 import {Station, StationInformation, StationStatus} from "../store/station/types";
 import './StationCard.css';
+import StationMap from "./Map";
+
+
+
 
 type StationProps = {
     station: Station
@@ -32,10 +36,11 @@ const status = (status?: StationStatus) => {
 
 const StationCard = ({station}: StationProps) => {
     return <div className='StationCard'>
-        <dl>
+        <dl className='StationCardInfo'>
             {information(station.information)}
             {status(station.status)}
         </dl>
+        <StationMap lat={station.information.lat} lon={station.information.lon} zoom={17} name={station.information.name}/>
     </div>
 
 };

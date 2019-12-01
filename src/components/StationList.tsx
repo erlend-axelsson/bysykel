@@ -8,7 +8,7 @@ interface StationListProps {
     station: StationState,
 }
 
-const sortByAvaiableBikes = (firstEl: Station, secondEl: Station) => {
+const sortByAvailableBikes = (firstEl: Station, secondEl: Station) => {
     return secondEl.status.num_bikes_available - firstEl.status.num_bikes_available
 };
 
@@ -16,7 +16,7 @@ const StationList = ({station}:
                          StationListProps) => {
     const [search, setSearch] = useState('');
 
-    const stationArray = Object.values(station).sort(sortByAvaiableBikes);
+    const stationArray = Object.values(station).sort(sortByAvailableBikes);
     const results = fuzzy.filter(
         search,
         stationArray,

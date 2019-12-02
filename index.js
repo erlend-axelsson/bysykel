@@ -60,27 +60,31 @@ const mapDiscoveryResponse = (response) => {
 };
 
 const startServer = (options, clientIdentifier) => {
-    const {get, listen, use} = express();
+    const app = express();
 
-    use(express.static(path.join(__dirname, 'build')));
+    try {
+        app.use(express.static(path.join(__dirname, 'build')));
 
-    get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'build', 'index.html'))
-    });
+        app.get('/', (req, res) => {
+            res.sendFile(path.join(__dirname, 'build', 'index.html'))
+        });
 
-    get('/loading/system_information', async (req, res) => {
-        const data = await getData(options[SYSTEM_INFORMATION], clientIdentifier);
-        res.send(data);
-    });
-    get('/loading/station_information', async (req, res) => {
-        const data = await getData(options[STATION_INFORMATION], clientIdentifier);
-        res.send(data);
-    });
-    get('/loading/station_status', async (req, res) => {
-        const data = await getData(options[STATION_STATUS], clientIdentifier);
-        res.send(data);
-    });
+        app.get('/loading/system_information', async (req, res) => {
+            const data = await getData(options[SYSTEM_INFORMATION], clientIdentifier);
+            res.send(data);
+        });
+        app.get('/loading/station_information', async (req, res) => {
+            const data = await getData(options[STATION_INFORMATION], clientIdentifier);
+            res.send(data);
+        });
+        app.get('/loading/station_status', async (req, res) => {
+            const data = await getData(options[STATION_STATUS], clientIdentifier);
+            res.send(data);
+        });
 
-    listen(8080, ()=> console.log('starting server'));
+        app.listen(8080, () => console.log('starting server'));
+    } catch(error){
+        console.error('Server failed to start', error);
+    }
 };
 main().then(console.log);

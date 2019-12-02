@@ -28,9 +28,7 @@ export const initialState: ApplicationState = {
     loading: initialLoadingState
 };
 
-const sagaMiddleware = createSagaMiddleware()
-
-export type AppState = ReturnType<typeof rootReducer>;
+const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore() {
     const middlewares = [sagaMiddleware];
@@ -42,7 +40,7 @@ export default function configureStore() {
         composeWithDevTools(middleWareEnhancer)
     );
 
-    sagaMiddleware.run(sagas)
+    sagaMiddleware.run(sagas);
 
     return store;
 }

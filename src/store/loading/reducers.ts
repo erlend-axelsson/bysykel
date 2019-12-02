@@ -29,12 +29,12 @@ export function loadingReducer(
             return {
                 ...state,
                 system: LoadEnum.REQUESTING
-            }
+            };
         case UPDATE_SYSTEM_INFORMATION_SUCCESS:
             return {
                 ...state,
                 system: LoadEnum.SUCCESS
-            }
+            };
         case UPDATE_SYSTEM_INFORMATION_FAILURE:
             return {
                 ...state,
@@ -44,12 +44,12 @@ export function loadingReducer(
             return {
                 ...state,
                 information: LoadEnum.REQUESTING
-            }
+            };
         case UPDATE_STATION_INFORMATION_SUCCESS:
             return {
                 ...state,
                 information: LoadEnum.SUCCESS
-            }
+            };
         case UPDATE_STATION_INFORMATION_FAILURE:
             return {
                 ...state,
@@ -59,17 +59,17 @@ export function loadingReducer(
             return {
                 ...state,
                 status: LoadEnum.REQUESTING
-            }
+            };
         case UPDATE_STATION_STATUS_SUCCESS:
             return {
                 ...state,
                 status: LoadEnum.SUCCESS
-            }
+            };
         case UPDATE_STATION_STATUS_FAILURE:
             return {
                 ...state,
                 status: LoadEnum.FAILURE
-            }
+            };
         default:
             return state;
     }

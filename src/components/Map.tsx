@@ -33,6 +33,6 @@ const StationMap = ({lat, lon, zoom, name}: mapProps) => {
             </Popup>
         </Marker>
     </Map>
-}
+};
 
 export default StationMap;

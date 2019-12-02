@@ -8,6 +8,12 @@ import {ApplicationState} from "./store";
 import {StationState} from "./store/station/types";
 import {LoadEnum} from "./store/loading/types";
 
+interface DispatchProps {
+    updateSystemInformationRequest: () => void
+    updateStationInformationRequest: () => void
+    updateStationStatusRequest: () => void
+}
+
 const mapState = (state: ApplicationState) => ( {
     station: state.station,
     system: state.loading.system,
@@ -15,37 +21,48 @@ const mapState = (state: ApplicationState) => ( {
     status: state.loading.status
 });
 
+const mapDispatchToProps: DispatchProps = {
+    updateSystemInformationRequest,
+    updateStationInformationRequest,
+    updateStationStatusRequest
+};
+
 const connector = connect(
     mapState,
-    {
-        updateSystemInformationRequest,
-        updateStationInformationRequest,
-        updateStationStatusRequest,
-    })
+    mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 type Props = PropsFromRedux & {
     station: StationState
 }
 
-const App = (props: Props) => {
+const App = (
+    {
+        station,
+        system,
+        information,
+        status,
+        updateStationInformationRequest,
+        updateStationStatusRequest,
+        updateSystemInformationRequest
+    }: Props) => {
   useEffect(()=> {
-      if(props.system === LoadEnum.UNINITIALIZED) props.updateSystemInformationRequest();
-      if(props.information === LoadEnum.UNINITIALIZED) props.updateStationInformationRequest();
-      if(props.status === LoadEnum.UNINITIALIZED) props.updateStationStatusRequest();
-  }, [props.station, props.system, props.information, props.status]);
+      if(system === LoadEnum.UNINITIALIZED) updateSystemInformationRequest();
+      if(information === LoadEnum.UNINITIALIZED) updateStationInformationRequest();
+      if(status === LoadEnum.UNINITIALIZED) updateStationStatusRequest();
+  }, [station, system, information, status, updateSystemInformationRequest, updateStationInformationRequest, updateStationStatusRequest]);
 
   if(
-      props.system !== LoadEnum.SUCCESS ||
-      props.information !== LoadEnum.SUCCESS ||
-      props.status !== LoadEnum.SUCCESS
+      system !== LoadEnum.SUCCESS ||
+      information !== LoadEnum.SUCCESS ||
+      status !== LoadEnum.SUCCESS
   ){
       return <h1>Loading ...</h1>
   } else {
       return (
           <div className="App">
               <p>
-                  <StationList station={props.station}/>
+                  <StationList station={station}/>
               </p>
           </div>
       );

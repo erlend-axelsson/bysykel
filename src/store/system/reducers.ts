@@ -6,10 +6,9 @@ export function systemReducer(
     state = initialSystemState,
     action: SystemActionTypes
 ): SystemState {
-    switch (action.type) {
-        case UPDATE_SYSTEM_INFORMATION_SUCCESS:
-            return action.payload;
-        default:
-            return state;
+    if (action.type === UPDATE_SYSTEM_INFORMATION_SUCCESS) {
+        return action.payload;
+    } else {
+        return state;
     }
 }

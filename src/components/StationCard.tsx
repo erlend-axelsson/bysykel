@@ -11,7 +11,7 @@ type StationProps = {
 }
 
 const information = (information?: StationInformation) => {
-    if(!information) return null
+    if(!information) return null;
     return <>
         <dt>Name</dt>
         <dd>{information.name}</dd>
@@ -23,7 +23,7 @@ const information = (information?: StationInformation) => {
 };
 
 const status = (status?: StationStatus) => {
-    if(!status) return null
+    if(!status) return null;
     return <>
         <dt>bikes available</dt>
         <dd>{status.num_bikes_available}</dd>

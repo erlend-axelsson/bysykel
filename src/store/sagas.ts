@@ -1,4 +1,4 @@
-import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {get} from '../api/api';
 import {
     UPDATE_SYSTEM_INFORMATION_FAILURE,
@@ -10,10 +10,11 @@ import {
     UPDATE_STATION_INFORMATION_SUCCESS, UPDATE_STATION_STATUS_FAILURE, UPDATE_STATION_STATUS_REQUEST,
     UPDATE_STATION_STATUS_SUCCESS
 } from "./station/types";
+import {STATIONINFORMATIONPATH, STATIONSTATUSPATH, SYSTEMINFORMATIONPATH} from "../paths";
 
 function* fetchStationStatus(){
     try {
-        const status = yield call(get, 'loading/station_status');
+        const status = yield call(get, STATIONSTATUSPATH);
         yield put({type: UPDATE_STATION_STATUS_SUCCESS, payload: status.data.stations});
     } catch (e) {
         console.error(e);
@@ -23,7 +24,7 @@ function* fetchStationStatus(){
 
 function* fetchStationInformation(){
     try {
-        const information = yield call(get, 'loading/station_information');
+        const information = yield call(get, STATIONINFORMATIONPATH);
         yield put({type: UPDATE_STATION_INFORMATION_SUCCESS, payload: information.data.stations});
     } catch (e) {
         console.error(e);
@@ -33,7 +34,7 @@ function* fetchStationInformation(){
 
 function* fetchSystemInformation(){
     try {
-        const status = yield call(get, 'loading/system_information');
+        const status = yield call(get, SYSTEMINFORMATIONPATH);
         yield put({type: UPDATE_SYSTEM_INFORMATION_SUCCESS, payload: status});
     } catch (e) {
         console.error(e);
@@ -42,13 +43,13 @@ function* fetchSystemInformation(){
 }
 
 export function* stationStatusSaga() {
-    yield takeEvery(UPDATE_STATION_STATUS_REQUEST, fetchStationStatus);
+    yield takeLatest(UPDATE_STATION_STATUS_REQUEST, fetchStationStatus);
 }
 export function* stationInformationSaga() {
-    yield takeEvery(UPDATE_STATION_INFORMATION_REQUEST, fetchStationInformation);
+    yield takeLatest(UPDATE_STATION_INFORMATION_REQUEST, fetchStationInformation);
 }
 export function* SystemInformationSaga() {
-    yield takeEvery(UPDATE_SYSTEM_INFORMATION_REQUEST, fetchSystemInformation);
+    yield takeLatest(UPDATE_SYSTEM_INFORMATION_REQUEST, fetchSystemInformation);
 }
 
 export default function* rootSaga() {

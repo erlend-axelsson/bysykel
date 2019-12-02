@@ -3,5 +3,5 @@ div.StationCard {
     text-align: left;
     padding: 2em;
     margin: 2em;
-    box-shadow: 3px 3px 10px 0px cornflowerblue;
+    box-shadow: 3px 3px 10px cornflowerblue;
 }

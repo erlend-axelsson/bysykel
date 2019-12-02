@@ -2,7 +2,6 @@ import React, {ChangeEvent, useState} from 'react';
 import {Station, StationState} from "../store/station/types";
 import StationCard from "./StationCard";
 import fuzzy from 'fuzzy'
-import StationMap from "./Map";
 
 interface StationListProps {
     station: StationState,
@@ -12,8 +11,7 @@ const sortByAvailableBikes = (firstEl: Station, secondEl: Station) => {
     return secondEl.status.num_bikes_available - firstEl.status.num_bikes_available
 };
 
-const StationList = ({station}:
-                         StationListProps) => {
+const StationList = ({station}: StationListProps) => {
     const [search, setSearch] = useState('');
 
     const stationArray = Object.values(station).sort(sortByAvailableBikes);
